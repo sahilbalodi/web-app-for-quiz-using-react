@@ -4,12 +4,12 @@ import './Login.css';
 class Login extends React.Component {
   render() {
     return (
-      <form className="Login">
+      <div className="Login">
         <p className="login-login">Login</p>
         <p className="login-username">Username</p>
-        <input className="login-input" type="text" />
-        <input type="button" className="login-button" value="Login" />
-      </form>
+        <input className="login-input" type="text" onChange={e => this.props.username(e)} />
+        <input type="button" className="login-button" value="Login" onClick={() => this.props.login()} />
+      </div>
     );
   }
 }

@@ -9,7 +9,7 @@ class Body extends Component {
       <div className="loginBody">
         <div className="loginCard" >
           <Welcome />
-          <Login />
+          <Login username={e => this.props.username(e)} login={() => this.props.login()} />
         </div>
       </div>
     );
