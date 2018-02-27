@@ -49,17 +49,18 @@ class App extends Component {
       const questions = this.state.questions;
       for (let i = 0; i < questions.length; i += 1) {
         temp = [];
-        display.push(<div>{questions[i].question}</div>);
+        display.push(<div className="page2-questionNo">{`Question ${i + 1}`}</div>);
+        display.push(<div className="page2-question">{questions[i].question}</div>);
         for (let j = 0; j < questions[i].options.length; j += 1) {
           temp.push(<div><input name={questions[i].question} value={questions[i].options[j]} type="radio" />{questions[i].options[j]}<br /></div>);
         }
-        display.push(<form>{temp}</form>);
+        display.push(<form className="page2-form">{temp}</form>);
       }
       console.log(questions);
       return (
         <div>
           <Header value="Quizzy" name={`Hello ${this.state.name}`} />
-          <p>{display}</p>
+          <div className="Quizcards">{display}</div>
           <button >calculate</button>
         </div>
       );
