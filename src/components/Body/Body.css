@@ -1,0 +1,16 @@
+.loginBody{
+  display: flex;
+flex-grow: 1;
+flex-wrap: wrap;
+flex-direction: column;
+justify-content: space-around;
+background-color: rgb(32,38,78);
+}
+.loginCard{
+  display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: center;
+position: relative;
+left: -90px;
+}

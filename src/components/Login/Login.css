@@ -1,0 +1,46 @@
+.Login{
+  background-color: #FFFFFF;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  position: relative;
+  left: 100px;
+  height: 400px;
+  width: 400px;
+}
+.login-login{
+  text-align: left;
+  position: relative;
+  font-size: 25px;
+  font-weight: bold;
+  left: 35px;
+}
+.login-username{
+  text-align: left;
+  position: relative;
+    font-size: 20px;
+  left: 35px;
+  font-weight: bold;
+  top: 40px;
+}
+.login-button{
+  text-align: center;
+  position: relative;
+  width: 50%;
+  height: 45px;
+  font-weight: bold;
+  font-size: 15px;
+  top: 90px;
+  border: 2px solid black;
+  border-radius: 10px;
+ align-self: center;
+}
+.login-input{
+  width: 80%;
+  align-self: center;
+  position: relative;
+  height: 30px;
+  border: 2px solid black;
+  top: 30px;
+}

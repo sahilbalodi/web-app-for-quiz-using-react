@@ -1,0 +1,34 @@
+.Welcome-welcome{
+font-size: 30px;
+position: relative;
+top: 70px;
+font-weight: bold;
+color: black;
+}
+.Welcome-to{
+  font-size: 30px;
+  position: relative;
+  font-weight: bold;
+  top: 30px;
+  color: black;
+}
+.Welcome-Quizzy{
+  font-size: 50px;
+  font-weight: bold;
+  position: relative;
+  top: -40px ;
+  color: white;
+  font-stretch: extra-condensed;
+}
+.Welcome{
+  background-color: rgb(58,187,242);
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  flex:initial;
+  flex-wrap: wrap;
+  position: relative;
+  left: 100px;
+  height: 400px;
+  width: 400px;
+}
