@@ -12,10 +12,13 @@ class App extends Component {
       name: null,
       questions: [],
       responses: [],
+      score: 0,
     };
   }
   page2() {
+    const respons = this.state.responses;
     const display = [];
+    let flag = 0;
     let temp = [];
     const questions = this.state.questions;
     for (let i = 0; i < questions.length; i += 1) {
@@ -23,8 +26,19 @@ class App extends Component {
       display.push(<div className="page2-questionNo">{`Question ${i + 1}`}</div>);
       display.push(<div className="page2-question">{questions[i].question}</div>);
       for (let j = 0; j < questions[i].options.length; j += 1) {
-        temp.push(<div><input name={questions[i].question} id={questions[i].questionId} onChange={e => this.textChange(e)} value={questions[i].options[j]} key="" type="radio" />{questions[i].options[j]}<br /></div>);
+        for (let k = 0; k < respons.length; k += 1) {
+          if ((questions[i].questionId === respons[k].questionId) && (questions[i].options[j] === respons[k].response)) {
+            temp.push(<div><input name={questions[i].question} id={questions[i].questionId} onChange={e => this.textChange(e)} value={questions[i].options[j]} key="" type="radio" checked />{questions[i].options[j]}<br /></div>);
+            flag = 1;
+            break;
+          }
+        }
+        if (flag !== 1) {
+          temp.push(<div><input name={questions[i].question} id={questions[i].questionId} onChange={e => this.textChange(e)} value={questions[i].options[j]} key="" type="radio" />{questions[i].options[j]}<br /></div>);
+        }
+        flag = 0;
       }
+      console.log(temp);
       display.push(<form className="page2-form">{temp}</form>);
     }
     return display;
@@ -41,7 +55,6 @@ class App extends Component {
     })
       .then((responseForChangeRequest) => {
         console.log(responseForChangeRequest);
-        // this.setState({ questions: responseOfQuestions.data });
       });
   }
   login() {
@@ -59,6 +72,14 @@ class App extends Component {
               this.setState({ questions: responseOfQuestions.data });
             });
         });
+    });
+  }
+  CalculateSum() {
+    axios.post('/calculateScore', {
+      name: this.state.name,
+    }).then((responseForSumRequest) => {
+      console.log(responseForSumRequest.data);
+      this.setState({ page: 2, score: responseForSumRequest.data });
     });
   }
   username(e) {
@@ -79,13 +100,18 @@ class App extends Component {
         <div>
           <Header value="Quizzy" name={`Hello ${this.state.name}`} />
           <div className="Quizcards">{display}</div>
-          <button className="page2-button">Calculate</button>
+          <button
+            className="page2-button"
+            onClick={() => {
+            this.CalculateSum();
+            }}
+          >Calculate
+          </button>
         </div>
       );
     }
-
     return (
-      <p>{this.state.name}{this.state.page}</p>
+      <p>{this.state.score}</p>
     );
   }
 }
