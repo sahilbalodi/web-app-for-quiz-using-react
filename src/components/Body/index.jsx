@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Welcome from '../Welcome';
 import Login from '../Login';
 import './Body.css';
@@ -15,4 +16,8 @@ class Body extends Component {
     );
   }
 }
+Body.propTypes = {
+  username: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+};
 export default Body;

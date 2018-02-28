@@ -24,18 +24,7 @@
   font-weight: bold;
   top: 40px;
 }
-.login-button{
-  text-align: center;
-  position: relative;
-  width: 50%;
-  height: 45px;
-  font-weight: bold;
-  font-size: 15px;
-  top: 90px;
-  border: 2px solid black;
-  border-radius: 10px;
- align-self: center;
-}
+
 .login-input{
   width: 80%;
   align-self: center;
