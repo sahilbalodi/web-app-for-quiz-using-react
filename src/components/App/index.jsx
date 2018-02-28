@@ -54,6 +54,12 @@ class App extends Component {
       response: respon,
     })
       .then((responseForChangeRequest) => {
+        axios.post('/user/login', {
+          name: this.state.name,
+        })
+          .then((response) => {
+            this.setState({ responses: response.data });
+          });
         console.log(responseForChangeRequest);
       });
   }
@@ -78,8 +84,9 @@ class App extends Component {
     axios.post('/calculateScore', {
       name: this.state.name,
     }).then((responseForSumRequest) => {
-      console.log(responseForSumRequest.data);
-      this.setState({ page: 2, score: responseForSumRequest.data });
+      if (this.state.responses.length === this.state.questions.length) { this.setState({ page: 2, score: responseForSumRequest.data }); } else {
+        alert('attempt all questions');
+      }
     });
   }
   username(e) {
