@@ -14,6 +14,36 @@ class App extends Component {
       responses: [],
     };
   }
+  page2() {
+    const display = [];
+    let temp = [];
+    const questions = this.state.questions;
+    for (let i = 0; i < questions.length; i += 1) {
+      temp = [];
+      display.push(<div className="page2-questionNo">{`Question ${i + 1}`}</div>);
+      display.push(<div className="page2-question">{questions[i].question}</div>);
+      for (let j = 0; j < questions[i].options.length; j += 1) {
+        temp.push(<div><input name={questions[i].question} id={questions[i].questionId} onChange={e => this.textChange(e)} value={questions[i].options[j]} key="" type="radio" />{questions[i].options[j]}<br /></div>);
+      }
+      display.push(<form className="page2-form">{temp}</form>);
+    }
+    return display;
+  }
+  textChange(e) {
+    const respon = e.target.value;
+    const id = e.target.id;
+    const name = this.state.name;
+    console.log(respon, id, name);
+    axios.post('/changeResponse', {
+      name,
+      questionId: id,
+      response: respon,
+    })
+      .then((responseForChangeRequest) => {
+        console.log(responseForChangeRequest);
+        // this.setState({ questions: responseOfQuestions.data });
+      });
+  }
   login() {
     this.setState({
       name: this.state.name,
@@ -44,24 +74,12 @@ class App extends Component {
         </div>
       );
     } else if (this.state.page === 1) {
-      const display = [];
-      let temp = [];
-      const questions = this.state.questions;
-      for (let i = 0; i < questions.length; i += 1) {
-        temp = [];
-        display.push(<div className="page2-questionNo">{`Question ${i + 1}`}</div>);
-        display.push(<div className="page2-question">{questions[i].question}</div>);
-        for (let j = 0; j < questions[i].options.length; j += 1) {
-          temp.push(<div><input name={questions[i].question} value={questions[i].options[j]} type="radio" />{questions[i].options[j]}<br /></div>);
-        }
-        display.push(<form className="page2-form">{temp}</form>);
-      }
-      console.log(questions);
+      const display = this.page2();
       return (
         <div>
           <Header value="Quizzy" name={`Hello ${this.state.name}`} />
           <div className="Quizcards">{display}</div>
-          <button >calculate</button>
+          <button className="page2-button">Calculate</button>
         </div>
       );
     }
